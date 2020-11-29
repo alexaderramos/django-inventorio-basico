@@ -28,7 +28,7 @@ class StockCreateView(SuccessMessageMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'New Stock'
+        context["title"] = 'Nuevo producto'
         context["savebtn"] = 'Agregar'
         return context       
 
@@ -42,9 +42,9 @@ class StockUpdateView(SuccessMessageMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Edit Stock'
-        context["savebtn"] = 'Actualizar Stock'
-        context["delbtn"] = 'Delete Stock'
+        context["title"] = 'Editar Producto'
+        context["savebtn"] = 'Actualizar Producto'
+        context["delbtn"] = 'Eliminar Producto'
         return context
 
 
