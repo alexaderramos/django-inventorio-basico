@@ -28,3 +28,15 @@ p{
     background-color: #fff;
     color: #000;
 }
+
+.ghost-button {
+    color: rgb(222, 213, 213);
+    background-color: transparent;
+    border: 2px solid rgb(207, 190, 190);
+}
+
+.ghost-button:hover, .ghost-button:active {
+    color: #e9e9e9;
+    background-color: transparent;
+    box-shadow: 0 2px 7px #cab8b8;
+}

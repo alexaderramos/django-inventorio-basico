@@ -193,7 +193,8 @@ ul {
 
 .content-section {
     background: transparent;
-    box-shadow: 0 4px 10px #ea2088;
+    /*box-shadow: 0 4px 10px #ea2088;*/
+    box-shadow: 0 4px 10px #737373;
     color: #130d0d;
     padding: 10px 20px;
     border: 1px solid #dddddd;

@@ -313,7 +313,7 @@ class PurchaseBillView(View):
             billdetailsobj.total = request.POST.get("total")
 
             billdetailsobj.save()
-            messages.success(request, "Bill details have been modified successfully")
+            messages.success(request, "Los detalles de compra se han actualizado correctamente")
         context = {
             'bill'          : PurchaseBill.objects.get(billno=billno),
             'items'         : PurchaseItem.objects.filter(billno=billno),
