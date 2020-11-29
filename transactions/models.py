@@ -2,7 +2,7 @@ from django.db import models
 from inventory.models import Stock
 
 
-# contains suppliers
+# proveedores
 class Supplier(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=150)
@@ -16,7 +16,7 @@ class Supplier(models.Model):
         return self.name
 
 
-# contains the purchase bills made
+# compras
 class PurchaseBill(models.Model):
     billno = models.AutoField(primary_key=True)
     time = models.DateTimeField(auto_now=True)
@@ -36,7 +36,7 @@ class PurchaseBill(models.Model):
         return total
 
 
-# contains the purchase stocks made
+# item de compra
 class PurchaseItem(models.Model):
     billno = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, related_name='purchasebillno')
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE, related_name='purchaseitem')
@@ -48,7 +48,7 @@ class PurchaseItem(models.Model):
         return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
 
 
-# contains the other details in the purchases bill
+# detalle de compra
 class PurchaseBillDetails(models.Model):
     billno = models.ForeignKey(PurchaseBill, on_delete=models.CASCADE, related_name='purchasedetailsbillno')
 
@@ -68,7 +68,7 @@ class PurchaseBillDetails(models.Model):
         return "Bill no: " + str(self.billno.billno)
 
 
-# contains the sale bills made
+# venta
 class SaleBill(models.Model):
     billno = models.AutoField(primary_key=True)
     time = models.DateTimeField(auto_now=True)
@@ -93,7 +93,7 @@ class SaleBill(models.Model):
         return total
 
 
-# contains the sale stocks made
+# item de venta
 class SaleItem(models.Model):
     billno = models.ForeignKey(SaleBill, on_delete=models.CASCADE, related_name='salebillno')
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE, related_name='saleitem')
@@ -105,7 +105,7 @@ class SaleItem(models.Model):
         return "Bill no: " + str(self.billno.billno) + ", Item = " + self.stock.name
 
 
-# contains the other details in the sales bill
+# detalle de venta
 class SaleBillDetails(models.Model):
     billno = models.ForeignKey(SaleBill, on_delete=models.CASCADE, related_name='saledetailsbillno')
 

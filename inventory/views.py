@@ -19,28 +19,28 @@ class StockListView(FilterView):
     paginate_by = 10
 
 
-class StockCreateView(SuccessMessageMixin, CreateView):                                 # createview class to add new stock, mixin used to display message
-    model = Stock                                                                       # setting 'Stock' model as model
-    form_class = StockForm                                                              # setting 'StockForm' form as form
-    template_name = "edit_stock.html"                                                   # 'edit_stock.html' used as the template
-    success_url = '/inventory'                                                          # redirects to 'inventory' page in the url after submitting the form
-    success_message = "El stock se ha creado con éxito"                             # displays message when form is submitted
+class StockCreateView(SuccessMessageMixin, CreateView):
+    model = Stock
+    form_class = StockForm
+    template_name = "edit_stock.html"
+    success_url = '/inventory'
+    success_message = "El producto se ha creado con éxito"
 
-    def get_context_data(self, **kwargs):                                               # used to send additional context
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = 'New Stock'
         context["savebtn"] = 'Agregar'
         return context       
 
 
-class StockUpdateView(SuccessMessageMixin, UpdateView):                                 # updateview class to edit stock, mixin used to display message
-    model = Stock                                                                       # setting 'Stock' model as model
-    form_class = StockForm                                                              # setting 'StockForm' form as form
-    template_name = "edit_stock.html"                                                   # 'edit_stock.html' used as the template
-    success_url = '/inventory'                                                          # redirects to 'inventory' page in the url after submitting the form
-    success_message = "El stock se ha actualizado correctamente"                             # displays message when form is submitted
+class StockUpdateView(SuccessMessageMixin, UpdateView):
+    model = Stock
+    form_class = StockForm
+    template_name = "edit_stock.html"
+    success_url = '/inventory'
+    success_message = "El producto se ha actualizado correctamente"
 
-    def get_context_data(self, **kwargs):                                               # used to send additional context
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = 'Edit Stock'
         context["savebtn"] = 'Actualizar Stock'
@@ -48,9 +48,9 @@ class StockUpdateView(SuccessMessageMixin, UpdateView):                         
         return context
 
 
-class StockDeleteView(View):                                                            # view class to delete stock
-    template_name = "delete_stock.html"                                                 # 'delete_stock.html' used as the template
-    success_message = "El stock se ha eliminado correctamente"                             # displays message when form is submitted
+class StockDeleteView(View):
+    template_name = "delete_stock.html"
+    success_message = "El producto ha eliminado correctamente"
     
     def get(self, request, pk):
         stock = get_object_or_404(Stock, pk=pk)

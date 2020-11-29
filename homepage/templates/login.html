@@ -15,57 +15,77 @@
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.min.css' %}">
 
     <!-- Main CSS, then Sidebar CSS-->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">    
-    <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">    
-    
-    <title>Zona 2 ruedas S.R.L - Ingresa</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+
+    <title>Zona 2 Ruedas S.R.L - Ingresa</title>
+    <style>
+        body {
+            background-repeat: repeat;
+            background-position: 0% 0%;
+            background-image: url("{% static 'img/portada.jpg' %}");
+            background-color: rgba(0, 0, 0, 0);
+            background-attachment: scroll;
+        }
+        .custom-div{
+            opacity: 1!important;
+        }
+        .content-section{
+            opacity: .9;
+            background-color: #e3e4e9;
+        }
+    </style>
 
 </head>
 
 <body>
 
-<div class="align-middle" style="color: #ea2088; font-style: bold; font-size: 3rem;">Zona 2 ruedas S.R.L</div>
-<div class="align-middle" style="color: #fff">Sistema de inventarios</div>
-<br><br><br>
+<div class="custom-div">
+    <div class="align-middle" style="color: #ea2088; font-style: bold; font-size: 3rem;">Zona 2 Ruedas S.R.L</div>
+    <div class="align-middle" style="color: #000">Sistema de inventarios</div>
+    <br><br><br>
 
-<div class="row d-flex justify-content-center">
-    <div class="col-md-6">
-        {% if user.is_authenticated %}
-            
-            <br><br>
-            <h2 class="align-middle">Ya has iniciado sesión, {{ request.user.username }}!</h2>
-            <div class="border-top pt-3 align-middle"> <br>
-                <a class="btn ghost-blue" href="{% url 'home' %}">Ir al Inicio</a> <br><br>
-                <a class="btn ghost-red" href="{% url 'logout' %}">Finalizar la sesión</a>
-            </div>
-        
-        {% else %}
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            {% if user.is_authenticated %}
 
-            <div class="content-section">
-                <form method="POST">
-                    {% csrf_token %}
-                    <fieldset class="form-group">
-                        <div class="align-middle"><legend class="border-bottom mb-4">Porfavor ingresa tus credenciales</legend></div>
-                        {{ form|crispy }}
-                    </fieldset>
-                    <div class="form-group">
-                        <div class="align-middle"> 
-                            <button class="ghost-pink" type="submit">Iniciar Sesión</button>
-                            {# <button class="ml-2 ghost-red">Exit</button> #}
+                <br><br>
+                <h2 class="align-middle">Ya has iniciado sesión, {{ request.user.username }}!</h2>
+                <div class="border-top pt-3 align-middle"><br>
+                    <a class="btn ghost-blue" href="{% url 'home' %}">Ir al Inicio</a> <br><br>
+                    <a class="btn ghost-red" href="{% url 'logout' %}">Finalizar la sesión</a>
+                </div>
+
+            {% else %}
+
+                <div class="content-section">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <div class="align-middle">
+                                <legend class="border-bottom mb-4">Porfavor ingresa tus credenciales</legend>
+                            </div>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <div class="align-middle">
+                                <button class="ghost-pink" type="submit">Iniciar Sesión</button>
+                                {# <button class="ml-2 ghost-red">Exit</button> #}
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
 
-        {% endif %}
+            {% endif %}
 
+        </div>
     </div>
 </div>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
-    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
-    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'bootstrap/popper.min.js' %}"></script>
+<script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
 
 </body>
 

@@ -13,32 +13,33 @@
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/bootstrap.min.css' %}">
 
     <!-- Main CSS, then Sidebar CSS and Dialog Box CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">    
-    <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">    
-    <link rel="stylesheet" type="text/css" href="{% static 'css/dialogbox.css' %}">    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dialogbox.css' %}">
 
     <title>Zona 2 ruedas - {% block title %}Titulo de pagina{% endblock title %}</title>
+    {% block css %}{% endblock %}
 
 </head>
 
 <body>
 
-    <!-- Dialog Box CSS  -->
-    <div id="dialogoverlay"></div>
-    <div id="dialogbox">
-        <div class="align-middle">
-            <div id="dialogboxhead"></div>
-            <div id="dialogboxbody"></div>
-            <div id="dialogboxfoot"></div>
-        </div>
+<!-- Dialog Box CSS  -->
+<div id="dialogoverlay"></div>
+<div id="dialogbox">
+    <div class="align-middle">
+        <div id="dialogboxhead"></div>
+        <div id="dialogboxbody"></div>
+        <div id="dialogboxfoot"></div>
     </div>
+</div>
 
-    <main id="wrapper">
-    
+<main id="wrapper">
+
     {% if user.is_authenticated %}
-    
+
         <nav id="sidebar">
-            
+
             <div class="sidebar-header">
                 <a class="navbar-brand titlefont mr-4" href="{% url 'home' %}"><h3>Zona 2 ruedas</h3></a>
             </div>
@@ -47,33 +48,45 @@
                 {# <p class="sidebar-paragraph">Dummy Heading</p> #}
                 <li>
                     <a class="sidebar-text sidebar-button" href="{% url 'home' %}">Inicio</a>
-                </li>               
+                </li>
                 <li>
-                    <a href="#inventorySubmenu" data-toggle="collapse" class="dropdown-toggle sidebar-text right-arrow sidebar-button">Inventario</a>
+                    <a href="#inventorySubmenu" data-toggle="collapse"
+                       class="dropdown-toggle sidebar-text right-arrow sidebar-button">Inventario</a>
                     <ul class="collapse list-unstyled" id="inventorySubmenu">
-                        <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'inventory' %}">Lista de inventarios</a> </li>
-                        <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'new-stock' %}">Agregar producto al stock</a> </li>
+                        <li><a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'inventory' %}">Lista de
+                            inventarios</a></li>
+                        <li><a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'new-stock' %}">Agregar
+                            producto al stock</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#purchaseSubmenu" data-toggle="collapse" class="dropdown-toggle sidebar-text right-arrow sidebar-button">Compras</a>
+                    <a href="#purchaseSubmenu" data-toggle="collapse"
+                       class="dropdown-toggle sidebar-text right-arrow sidebar-button">Compras</a>
                     <ul class="collapse list-unstyled" id="purchaseSubmenu">
-                        <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'purchases-list' %}">Lista de compras</a> </li>
-                        <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'select-supplier' %}">Nueva compra</a> </li>
+                        <li><a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'purchases-list' %}">Lista
+                            de compras</a></li>
+                        <li><a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'select-supplier' %}">Nueva
+                            compra</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#saleSubmenu" data-toggle="collapse" class="dropdown-toggle sidebar-text right-arrow sidebar-button">Ventas</a>
+                    <a href="#saleSubmenu" data-toggle="collapse"
+                       class="dropdown-toggle sidebar-text right-arrow sidebar-button">Ventas</a>
                     <ul class="collapse list-unstyled" id="saleSubmenu">
-                        <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'sales-list' %}">Lista de ventas</a> </li>
-                        <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'new-sale' %}">Nueva venta</a> </li>
+                        <li><a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'sales-list' %}">Lista
+                            de ventas</a></li>
+                        <li><a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'new-sale' %}">Nueva
+                            venta</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#supplierSubmenu" data-toggle="collapse" class="dropdown-toggle sidebar-text right-arrow sidebar-button">Proveedores</a>
+                    <a href="#supplierSubmenu" data-toggle="collapse"
+                       class="dropdown-toggle sidebar-text right-arrow sidebar-button">Proveedores</a>
                     <ul class="collapse list-unstyled" id="supplierSubmenu">
-                        <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'suppliers-list' %}">Lista de proveedores</a> </li>
-                        <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'new-supplier' %}">Agregar nuevo proveedor</a> </li>
+                        <li><a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'suppliers-list' %}">Lista
+                            de proveedores</a></li>
+                        <li><a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'new-supplier' %}">Agregar
+                            nuevo proveedor</a></li>
                     </ul>
                 </li>
                 <li>
@@ -81,12 +94,15 @@
                 </li>
 
                 <li class="bottomleft">
-                    <a href="#UserSubmenu" data-toggle="collapse" class="dropdown-toggle sidebar-text right-arrow sidebar-button">{{ request.user.username }}</a>
+                    <a href="#UserSubmenu" data-toggle="collapse"
+                       class="dropdown-toggle sidebar-text right-arrow sidebar-button">{{ request.user.username }}</a>
                     <ul class="collapse list-unstyled" id="UserSubmenu">
                         {% if request.user.is_superuser %}
-                            <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'admin:index' %}">Pagina de administrador</a> </li>
+                            <li><a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'admin:index' %}">Pagina
+                                de administrador</a></li>
                         {% endif %}
-                            <li> <a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'logout' %}">Finalizar sesión</a> </li>
+                        <li><a class="sidebar-text sidebar-subitem sidebar-button" href="{% url 'logout' %}">Finalizar
+                            sesión</a></li>
                     </ul>
                 </li>
 
@@ -103,36 +119,36 @@
             {% endcomment %}
 
         </nav>
-    
+
         <div id="content">
 
-            <div class="row">
-                <div class="col-md-12">
-                
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }}"> {{ message }} </div>
-                        {% endfor %}
-                    {% endif %}
-                
-    {% endif %} 
+        <div class="row">
+        <div class="col-md-12">
 
-                    <div class="container">
-                        {% block content %}{% endblock content %}
-                    </div>
-                    
-                </div>
-            </div>
-            <br>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}"> {{ message }} </div>
+            {% endfor %}
+        {% endif %}
 
-        </div>
-    
-    </main>    
-        
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
-    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
-    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    {% endif %}
+
+    <div class="container">
+        {% block content %}{% endblock content %}
+    </div>
+
+    </div>
+    </div>
+    <br>
+
+    </div>
+
+</main>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'bootstrap/popper.min.js' %}"></script>
+<script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
 
 </body>
 

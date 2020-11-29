@@ -12,7 +12,6 @@ from .models import (
 from inventory.models import Stock
 
 
-# form used to select a supplier
 class SelectSupplierForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -24,7 +23,6 @@ class SelectSupplierForm(forms.ModelForm):
         fields = ['supplier']
 
 
-# form used to render a single stock item form
 class PurchaseItemForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -40,18 +38,15 @@ class PurchaseItemForm(forms.ModelForm):
         fields = ['stock', 'quantity', 'perprice']
 
 
-# formset used to render multiple 'PurchaseItemForm'
 PurchaseItemFormset = formset_factory(PurchaseItemForm, extra=1)
 
 
-# form used to accept the other details for purchase bill
 class PurchaseDetailsForm(forms.ModelForm):
     class Meta:
         model = PurchaseBillDetails
         fields = ['eway', 'veh', 'destination', 'po', 'cgst', 'sgst', 'igst', 'cess', 'tcs', 'total']
 
 
-# form used for supplier
 class SupplierForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -79,13 +74,12 @@ class SupplierForm(forms.ModelForm):
             'gstin': {
                 'unique': "El ruc ingresado ya esta registrado",
             },
-            'phone':{
+            'phone': {
                 'unique': 'Ya existe un Proveedor con este telefono'
             }
         }
 
 
-# form used to get customer details
 class SaleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -121,7 +115,6 @@ class SaleForm(forms.ModelForm):
         }
 
 
-# form used to render a single stock item form
 class SaleItemForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -137,11 +130,9 @@ class SaleItemForm(forms.ModelForm):
         fields = ['stock', 'quantity', 'perprice']
 
 
-# formset used to render multiple 'SaleItemForm'
 SaleItemFormset = formset_factory(SaleItemForm, extra=1)
 
 
-# form used to accept the other details for sales bill
 class SaleDetailsForm(forms.ModelForm):
     class Meta:
         model = SaleBillDetails
